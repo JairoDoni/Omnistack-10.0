@@ -1,5 +1,5 @@
 const Dev = require('../models/Dev')
-const parseStringAsArray = require('./utils/parseStringAsArray');
+const parseStringAsArray = require('../utils/parseStringAsArray');
 
 //Buscar todos devs em um raio de 10km
 //Filtrar por tecnologias 
@@ -17,14 +17,12 @@ module.exports = {
         $near: {
           $geometry: {
             type: "Point",
-            coodnates: [longitude, latitude],
+            coordinates: [longitude, latitude],
           },
-          $maxDistance: 10000,
+          $maxDistance: 100000,
         }
       },
     });
-    
-    console.log(techsArray);
     
     return response.json({ devs });
   }
